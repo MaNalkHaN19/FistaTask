@@ -1,6 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import up from "@/assets/icons/up.png"; // Update path to your up arrow icon
+import down from "@/assets/icons/down.png"; // Update path to your down arrow icon
 
 interface SectionProps {
   title: string;
@@ -16,14 +19,24 @@ const Section: React.FC<SectionProps> = ({ title, links }) => {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div
+        className="flex justify-between items-center cursor-pointer"
+        onClick={toggleSection}
+      >
         <h3 className="font-bold text-gray-800 mb-2">{title}</h3>
-        <button
-          onClick={toggleSection}
-          className="md:hidden text-gray-600"
+        <div
+          className={`smtransition-transform duration-300 transform ${
+            isOpen ? "rotate-180" : "rotate-0"
+          }`}
         >
-          {isOpen ? '▲' : '▼'}
-        </button>
+          <Image
+            src={isOpen ? up : down}
+            alt="toggle icon"
+            width={16}
+            height={16}
+            className="lg:hidden md:hidden"
+          />
+        </div>
       </div>
       <ul className={`${isOpen ? "block" : "hidden"} md:block`}>
         {links.map((link, index) => (
@@ -34,7 +47,6 @@ const Section: React.FC<SectionProps> = ({ title, links }) => {
           </li>
         ))}
       </ul>
-      <hr></hr>
     </div>
   );
 };
@@ -42,7 +54,7 @@ const Section: React.FC<SectionProps> = ({ title, links }) => {
 const Page: React.FC = () => {
   return (
     <>
-      <div className="grid  md:grid-cols-4 gap-4 text-gray-600">
+      <div className="grid md:grid-cols-4 gap-4 text-gray-600">
         <Section
           title="Company resources"
           links={[
