@@ -26,7 +26,7 @@ export default function Page() {
               <Image src={Update} alt="Update" width={120} height={120} />
             </div>
             <p className="text-black text-xl m-6 lg:line-clamp-2 flex-grow">
-              7 memorable moments in Chromecast's history
+              7 memorable moments in Chromecasts history
             </p>
           </div>
           <div className="flex flex-row items-center hover:bg-gray-200 p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300 w-full">
